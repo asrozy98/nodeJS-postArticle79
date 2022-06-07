@@ -43,13 +43,13 @@ exports.getAllPost = (req, res) => {
 exports.createPost = (req, res) => {
   req.addListener("data", (data) => {
     const body = JSON.parse(data.toString());
-    try {
-      model.Post.create({
-        title: body.title,
-        content: body.content,
-        category: body.category,
-        status: body.status,
-      }).then(function (result) {
+    model.Post.create({
+      title: body.title,
+      content: body.content,
+      category: body.category,
+      status: body.status,
+    })
+      .then(function (result) {
         var params = {
           status: "success",
           message: "Post Saved Successfully",
@@ -57,16 +57,16 @@ exports.createPost = (req, res) => {
 
         res.write(JSON.stringify(params));
         res.end();
-      });
-    } catch (err) {
-      params = {
-        status: "error",
-        message: err.message,
-      };
+      })
+      .catch((err) => {
+        params = {
+          status: "error",
+          message: err.message,
+        };
 
-      res.write(JSON.stringify(params));
-      res.end();
-    }
+        res.write(JSON.stringify(params));
+        res.end();
+      });
   });
 };
 
@@ -110,20 +110,20 @@ exports.updatePost = (req, res) => {
 
   req.addListener("data", (data) => {
     const body = JSON.parse(data.toString());
-    try {
-      model.Post.update(
-        {
-          title: body.title,
-          content: body.content,
-          category: body.category,
-          status: body.status,
+    model.Post.update(
+      {
+        title: body.title,
+        content: body.content,
+        category: body.category,
+        status: body.status,
+      },
+      {
+        where: {
+          id: id,
         },
-        {
-          where: {
-            id: id,
-          },
-        }
-      ).then(function (result) {
+      }
+    )
+      .then(function (result) {
         if (result[0]) {
           var params = {
             status: "success",
@@ -140,16 +140,16 @@ exports.updatePost = (req, res) => {
           res.write(JSON.stringify(params));
           res.end();
         }
-      });
-    } catch (err) {
-      params = {
-        status: "error",
-        message: err.message,
-      };
+      })
+      .catch((err) => {
+        params = {
+          status: "error",
+          message: err.message,
+        };
 
-      res.write(JSON.stringify(params));
-      res.end();
-    }
+        res.write(JSON.stringify(params));
+        res.end();
+      });
   });
 };
 

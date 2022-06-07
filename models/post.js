@@ -13,10 +13,52 @@ module.exports = (sequelize, DataTypes) => {
   }
   Post.init(
     {
-      title: DataTypes.STRING,
-      content: DataTypes.TEXT,
-      category: DataTypes.STRING,
-      status: DataTypes.ENUM("Publish", "Draft", "Thrash"),
+      title: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Title is required",
+          },
+          len: {
+            args: 20,
+            msg: "Title must be minimal 20 characters",
+          },
+        },
+      },
+      content: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Content is required",
+          },
+          len: {
+            args: 200,
+            msg: "Content must be minimal 200 characters",
+          },
+        },
+      },
+      category: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: {
+            msg: "Category is required",
+          },
+          len: {
+            args: 3,
+            msg: "Category must be minimal 3 characters",
+          },
+        },
+      },
+      status: {
+        type: DataTypes.ENUM("Publish", "Draft", "Thrash"),
+        allowNull: false,
+        validate: {
+          isIn: {
+            args: [["Publish", "Draft", "Thrash"]],
+            msg: "Status must be Publish, Draft or Thrash",
+          },
+        },
+      },
     },
     {
       sequelize,

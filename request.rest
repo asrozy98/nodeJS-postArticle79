@@ -13,17 +13,17 @@ POST http://127.0.0.1:8000/article
 Content-Type: application/json
 
 {
-    "title": "Article 2",
+    "title": "test edit",
     "content": "Article 2 content",
     "category": "category 2",
-    "status": "Draft"
+    "status": "Publish"
 }
 
 ### Get By ID
 GET http://127.0.0.1:8000/article/4
 
 ### Update
-PATCH http://127.0.0.1:8000/article/5
+PATCH http://127.0.0.1:8000/article/4
 Content-Type: application/json
 
 {
