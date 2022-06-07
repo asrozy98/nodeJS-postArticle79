@@ -1,10 +1,11 @@
-const http = require("http");
+var express = require("express");
+var app = express();
 const router = require("./routes/index");
 
-const server = http.createServer((req, res) => {
-  res.setHeader("Content-type", "application/json");
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use("/", router);
 
-  router.index(req, res);
+app.listen(8000, function () {
+  console.log("Server is running on port 3000");
 });
-
-server.listen(8000);

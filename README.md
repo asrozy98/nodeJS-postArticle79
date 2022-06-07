@@ -1,5 +1,5 @@
 # nodeJS-postArticle79
-CRUD post article with Node JS, Sequelize ORM
+CRUD post article with Node JS, Express JS, Sequelize ORM
 
 1.  Buat sebuah database dengan nama "post_article79"
 2.  Clone repository ini ke komputer anda

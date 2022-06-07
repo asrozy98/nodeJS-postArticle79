@@ -1,29 +1,15 @@
+var express = require("express");
+var router = express.Router();
 const articleController = require("../controllers/articleController");
 
-exports.index = (req, res) => {
-  var str = req.url;
-  var path = str.split("/");
-  if (path[1] === "article") {
-    if (path[2]) {
-      if (req.method === "GET") {
-        articleController.getById(req, res);
-      }
-      if (req.method === "PATCH") {
-        articleController.updatePost(req, res);
-      }
-      if (req.method === "DELETE") {
-        articleController.deletePost(req, res);
-      }
-    } else {
-      if (req.method === "GET") {
-        articleController.getAllPost(req, res);
-      }
-      if (req.method === "POST") {
-        articleController.createPost(req, res);
-      }
-    }
-  } else {
-    res.write("Hello World");
-    res.end();
-  }
-};
+router.get("/", function (req, res, next) {
+  res.send("Hello World");
+});
+
+router.get("/article", articleController.getAllPost);
+router.post("/article", articleController.createPost);
+router.get("/article/:id", articleController.getById);
+router.patch("/article/:id", articleController.updatePost);
+router.delete("/article/:id", articleController.deletePost);
+
+module.exports = router;

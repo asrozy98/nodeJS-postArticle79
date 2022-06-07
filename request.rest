@@ -1,12 +1,7 @@
 GET http://127.0.0.1:8000
 
 ### Get All
-GET http://127.0.0.1:8000/article
-
-{
-    "page": 1,
-    "limit": 10
-}
+GET http://127.0.0.1:8000/article?page=1&limit=10
 
 ### Create
 POST http://127.0.0.1:8000/article
@@ -16,22 +11,22 @@ Content-Type: application/json
     "title": "test edit",
     "content": "Article 2 content",
     "category": "category 2",
-    "status": "Publish"
+    "status": "Drafts"
 }
 
 ### Get By ID
-GET http://127.0.0.1:8000/article/4
+GET http://127.0.0.1:8000/article/14
 
 ### Update
-PATCH http://127.0.0.1:8000/article/4
+PATCH http://127.0.0.1:8000/article/14
 Content-Type: application/json
 
 {
-    "title": "Article 4",
-    "content": "Article 4 content",
+    "title": "Article 4 gerdjtydkjtykytfkljtyfgjftygjty",
+    "content": "Article 4 contenfghntfgxhrdhrdhfrdhrtdfhtfhfthththxhrtdhrdhrdhtdfghtdfxhdfxhxdfti hjgbrthgrtuhersiouhguiohreuosyghuiserhgureshgiuorsehgorseghoslerugpseorgArticle 4 contenfghntfgxhrdhrdhfrdhrtdfhtfhfthththxhrtdhrdhrdhtdfghtdfxhdfxhxdfti hjgbrthgrtuhersiouhguiohreuosyghuiserhgureshgiuorsehgorseghoslerugpseorg",
     "category": "category 1",
     "status": "Draft"
 }
 
 ### Delete
-DELETE http://127.0.0.1:8000/article/5
+DELETE http://127.0.0.1:8000/article/16

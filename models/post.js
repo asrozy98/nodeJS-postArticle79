@@ -51,7 +51,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       status: {
         type: DataTypes.ENUM("Publish", "Draft", "Thrash"),
-        allowNull: false,
+        notEmpty: {
+          msg: "Status is required",
+        },
         validate: {
           isIn: {
             args: [["Publish", "Draft", "Thrash"]],
